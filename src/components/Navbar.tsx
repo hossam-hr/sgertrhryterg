@@ -32,6 +32,7 @@ export const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               <NavLink to="/">Home</NavLink>
+              <NavLink to="/services">Services</NavLink>
               <NavLink to="/about">About</NavLink>
               <NavLink to="/contact">Contact</NavLink>
               <NavLink to="/privacy">Privacy</NavLink>
