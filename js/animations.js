@@ -4,8 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeInElements = document.querySelectorAll('.fade-in');
     
     // Add a small delay between each element's animation for a staggered effect
+    // and make them visible immediately without requiring scroll
     fadeInElements.forEach((element, index) => {
         element.style.animationDelay = `${0.3 + index * 0.2}s`;
+        // Add visible class immediately to show content
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, 100);
     });
     
     // Animation for the floating shapes to simulate rectangle movement
@@ -25,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Add scroll-triggered animations
 window.addEventListener('scroll', () => {
-    const scrollElements = document.querySelectorAll('.fade-in');
+    const scrollElements = document.querySelectorAll('.fade-in:not(.visible)');
     
     scrollElements.forEach(element => {
         // Check if the element is in the viewport
