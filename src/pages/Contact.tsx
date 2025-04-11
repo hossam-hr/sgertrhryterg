@@ -2,10 +2,12 @@
 import { motion } from "framer-motion";
 import PageLayout, { fadeUpVariants } from "@/components/PageLayout";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { toast } from "@/components/ui/use-toast";
+import { LanguageContext } from "@/context/LanguageContext";
 
 const ContactPage = () => {
+  const { isRTL } = useContext(LanguageContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -14,8 +16,8 @@ const ContactPage = () => {
     e.preventDefault();
     // In a real application, you would send the form data to a server
     toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
+      title: isRTL ? "تم إرسال الرسالة!" : "Message sent!",
+      description: isRTL ? "سنرد عليك في أقرب وقت ممكن." : "We'll get back to you as soon as possible.",
     });
     setName("");
     setEmail("");
@@ -34,11 +36,14 @@ const ContactPage = () => {
         >
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
-              Contact Us
+              {isRTL ? "اتصل بنا" : "Contact Us"}
             </span>
           </h1>
           <p className="text-base sm:text-lg text-white/40 leading-relaxed max-w-2xl mx-auto">
-            Ready to transform your digital journey? Let's connect and explore how we can help.
+            {isRTL
+              ? "جاهز لتحويل رحلتك الرقمية؟ لنتواصل ونستكشف كيف يمكننا المساعدة."
+              : "Ready to transform your digital journey? Let's connect and explore how we can help."
+            }
           </p>
         </motion.div>
 
@@ -55,7 +60,7 @@ const ContactPage = () => {
                   <Mail className="h-6 w-6 text-indigo-400" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-white">Email</h3>
+                  <h3 className="text-lg font-medium text-white">{isRTL ? "البريد الإلكتروني" : "Email"}</h3>
                   <p className="text-white/50">info@techkuwait.com</p>
                 </div>
               </div>
@@ -65,7 +70,7 @@ const ContactPage = () => {
                   <Phone className="h-6 w-6 text-rose-400" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-white">Phone</h3>
+                  <h3 className="text-lg font-medium text-white">{isRTL ? "الهاتف" : "Phone"}</h3>
                   <p className="text-white/50">+965 2222 3333</p>
                 </div>
               </div>
@@ -75,11 +80,21 @@ const ContactPage = () => {
                   <MapPin className="h-6 w-6 text-amber-400" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-white">Address</h3>
+                  <h3 className="text-lg font-medium text-white">{isRTL ? "العنوان" : "Address"}</h3>
                   <p className="text-white/50">
-                    Al Hamra Tower, 35th Floor<br />
-                    Sharq, Kuwait City<br />
-                    Kuwait
+                    {isRTL ? (
+                      <>
+                        برج الحمراء، الطابق 35<br />
+                        شرق، مدينة الكويت<br />
+                        الكويت
+                      </>
+                    ) : (
+                      <>
+                        Al Hamra Tower, 35th Floor<br />
+                        Sharq, Kuwait City<br />
+                        Kuwait
+                      </>
+                    )}
                   </p>
                 </div>
               </div>
@@ -95,7 +110,7 @@ const ContactPage = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-white/70 mb-1">
-                  Name
+                  {isRTL ? "الاسم" : "Name"}
                 </label>
                 <input
                   type="text"
@@ -103,14 +118,14 @@ const ContactPage = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.1] rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                  placeholder="Your name"
+                  placeholder={isRTL ? "اسمك" : "Your name"}
                   required
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-white/70 mb-1">
-                  Email
+                  {isRTL ? "البريد الإلكتروني" : "Email"}
                 </label>
                 <input
                   type="email"
@@ -118,14 +133,14 @@ const ContactPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.1] rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                  placeholder="your.email@example.com"
+                  placeholder={isRTL ? "بريدك@مثال.كوم" : "your.email@example.com"}
                   required
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-white/70 mb-1">
-                  Message
+                  {isRTL ? "الرسالة" : "Message"}
                 </label>
                 <textarea
                   id="message"
@@ -133,7 +148,7 @@ const ContactPage = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   rows={4}
                   className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.1] rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                  placeholder="How can we help you?"
+                  placeholder={isRTL ? "كيف يمكننا مساعدتك؟" : "How can we help you?"}
                   required
                 ></textarea>
               </div>
@@ -143,7 +158,7 @@ const ContactPage = () => {
                 className="w-full px-6 py-3 bg-gradient-to-r from-indigo-500 to-rose-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center"
               >
                 <Send className="w-4 h-4 mr-2" />
-                Send Message
+                {isRTL ? "إرسال الرسالة" : "Send Message"}
               </button>
             </form>
           </motion.div>

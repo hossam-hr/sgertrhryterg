@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import PageLayout, { fadeUpVariants } from "@/components/PageLayout";
 import { Code, Database, Globe, Cpu, LineChart, Shield } from "lucide-react";
+import { useContext } from "react";
+import { LanguageContext } from "@/context/LanguageContext";
 
 const ServiceCard = ({ 
   icon, 
@@ -34,36 +36,50 @@ const ServiceCard = ({
 };
 
 const ServicesPage = () => {
+  const { t, isRTL } = useContext(LanguageContext);
+  
   const services = [
     {
       icon: <Code className="h-6 w-6 text-indigo-400" />,
-      title: "Custom Software Development",
-      description: "Tailored software solutions designed specifically for your business needs, from enterprise applications to mobile apps."
+      title: isRTL ? "تطوير البرمجيات المخصصة" : "Custom Software Development",
+      description: isRTL 
+        ? "حلول برمجية مخصصة مصممة خصيصًا لاحتياجات عملك، من تطبيقات المؤسسات إلى تطبيقات الجوال."
+        : "Tailored software solutions designed specifically for your business needs, from enterprise applications to mobile apps."
     },
     {
       icon: <Globe className="h-6 w-6 text-rose-400" />,
-      title: "Web Development",
-      description: "Responsive, modern websites and web applications built with the latest technologies for maximum performance and user engagement."
+      title: isRTL ? "تطوير الويب" : "Web Development",
+      description: isRTL
+        ? "مواقع ويب وتطبيقات ويب متجاوبة وحديثة مبنية بأحدث التقنيات لتحقيق أقصى أداء وتفاعل للمستخدم."
+        : "Responsive, modern websites and web applications built with the latest technologies for maximum performance and user engagement."
     },
     {
       icon: <Database className="h-6 w-6 text-amber-400" />,
-      title: "Cloud Solutions",
-      description: "Scalable cloud infrastructure, migration services, and management to optimize your IT operations and reduce costs."
+      title: isRTL ? "حلول سحابية" : "Cloud Solutions",
+      description: isRTL
+        ? "بنية تحتية سحابية قابلة للتوسع، وخدمات الترحيل، والإدارة لتحسين عمليات تكنولوجيا المعلومات وتقليل التكاليف."
+        : "Scalable cloud infrastructure, migration services, and management to optimize your IT operations and reduce costs."
     },
     {
       icon: <Cpu className="h-6 w-6 text-cyan-400" />,
-      title: "AI & Machine Learning",
-      description: "Advanced AI solutions that help your business automate processes, gain insights, and make data-driven decisions."
+      title: isRTL ? "الذكاء الاصطناعي والتعلم الآلي" : "AI & Machine Learning",
+      description: isRTL
+        ? "حلول ذكاء اصطناعي متقدمة تساعد عملك على أتمتة العمليات، واكتساب رؤى جديدة، واتخاذ قرارات مستندة إلى البيانات."
+        : "Advanced AI solutions that help your business automate processes, gain insights, and make data-driven decisions."
     },
     {
       icon: <LineChart className="h-6 w-6 text-green-400" />,
-      title: "Digital Transformation",
-      description: "End-to-end digital transformation strategies that help your organization adapt and thrive in the digital age."
+      title: isRTL ? "التحول الرقمي" : "Digital Transformation",
+      description: isRTL
+        ? "استراتيجيات التحول الرقمي الشاملة التي تساعد مؤسستك على التكيف والازدهار في العصر الرقمي."
+        : "End-to-end digital transformation strategies that help your organization adapt and thrive in the digital age."
     },
     {
       icon: <Shield className="h-6 w-6 text-purple-400" />,
-      title: "Cybersecurity",
-      description: "Comprehensive security solutions to protect your business from threats and ensure compliance with regulations."
+      title: isRTL ? "الأمن السيبراني" : "Cybersecurity",
+      description: isRTL
+        ? "حلول أمنية شاملة لحماية عملك من التهديدات وضمان الامتثال للوائح."
+        : "Comprehensive security solutions to protect your business from threats and ensure compliance with regulations."
     }
   ];
 
@@ -79,11 +95,14 @@ const ServicesPage = () => {
         >
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
-              Our Services
+              {isRTL ? "خدماتنا" : "Our Services"}
             </span>
           </h1>
           <p className="text-base sm:text-lg text-white/40 leading-relaxed max-w-2xl mx-auto">
-            We offer a comprehensive range of technology solutions to help your business thrive in the digital era.
+            {isRTL 
+              ? "نقدم مجموعة شاملة من الحلول التكنولوجية لمساعدة عملك على الازدهار في العصر الرقمي."
+              : "We offer a comprehensive range of technology solutions to help your business thrive in the digital era."
+            }
           </p>
         </motion.div>
 
