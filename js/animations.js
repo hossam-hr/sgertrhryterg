@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         element.style.animationDelay = `${0.3 + index * 0.2}s`;
     });
     
-    // Animation for the floating shapes to simulate movement
+    // Animation for the floating shapes to simulate rectangle movement
     const shapes = document.querySelectorAll('.floating-shape');
     
     shapes.forEach((shape, index) => {
