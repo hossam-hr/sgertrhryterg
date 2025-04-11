@@ -1,3 +1,4 @@
+
 /* Base Styles */
 :root {
     --background: #030303;
@@ -682,4 +683,136 @@ html, body {
     color: white;
     font-weight: 500;
     border: none;
-    border-radius
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-button:hover {
+    background: linear-gradient(to right, var(--primary-hover), var(--secondary-hover));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--toast-bg);
+    color: var(--foreground);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-notification.hidden {
+    display: none;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+}
+
+.check-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #10b981;
+    margin-right: 0.75rem;
+}
+
+.toast-message h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.toast-message p {
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+/* Language Switcher */
+.language-switcher {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    color: var(--foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 40;
+}
+
+.language-switcher:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.language-switcher .globe-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    background: none;
+    position: static;
+}
+
+.language-switcher .lang-text {
+    color: var(--foreground);
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-150px) rotate(-15deg);
+    }
+    100% {
+        opacity: 0.7;
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+/* Make content visible by default instead of requiring scroll */
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
