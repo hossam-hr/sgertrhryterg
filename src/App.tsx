@@ -11,7 +11,6 @@ import ContactPage from "./pages/Contact";
 import PrivacyPage from "./pages/Privacy";
 import ServicesPage from "./pages/Services";
 import AgreementPage from "./pages/Agreement";
-import DeleteDataPage from "./pages/DeleteData";
 import { LanguageProvider } from "./context/LanguageContext";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 
@@ -31,7 +30,6 @@ const App = () => (
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/agreement" element={<AgreementPage />} />
-            <Route path="/delete-data" element={<DeleteDataPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
